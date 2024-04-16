@@ -1,5 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 
+import { useQuery } from "convex/react";
+import { api } from "~cvx/_generated/api";
 export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
@@ -8,9 +10,11 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  const testVal = useQuery(api.test.test);
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
+      <h1>Welcome to Remix + Convex</h1>
+      <div>{testVal?.message || "Loading..."}</div>
       <ul>
         <li>
           <a
